@@ -1,6 +1,26 @@
 # Python Dersleri
+# İçindekiler
 
-## 1. Kurulumlar
+## İçindekiler
+
+- [1. Kurulumlar](#1-kurulumlar)
+- [2. Değişkenler](#2-değişkenler)
+- [3. Temel Fonksiyonlar](#3-temel-fonksiyonlar)
+- [4. Veri Tipleri](#4-veri-tipleri)
+- [5. Veri Tipleri Dönüşümü](#5-veri-tipleri-dönüşümü)
+- [6. Yorum Satırı](#6-yorum-satırı)
+- [7. Operatörler](#7-operatörler)
+- [8. Koşullar](#8-koşullar)
+- [9. Döngüler](#9-döngüler)
+- [10. Fonksiyonlar](#10-fonksiyonlar)
+- [11. Modüller](#11-modüller)
+- [12. Hatalar](#12-hatalar)
+- [13. Nesne Yönelimli Programlama (Object Oriented Programming, OOP)](#13-nesne-yönelimli-programlama-object-oriented-programming-oop)
+- [14. Dosya İşlemleri](#14-dosya-işlemleri)
+- [15. Değerlendirme](#15-değerlendirme)
+
+
+# 1. Kurulumlar
 
 ---
 
