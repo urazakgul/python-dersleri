@@ -1,5 +1,4 @@
 # Python Dersleri
-# İçindekiler
 
 ## İçindekiler
 
