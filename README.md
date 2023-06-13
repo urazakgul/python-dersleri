@@ -1,10 +1,25 @@
 # Python Dersleri
 # İçindekiler
 
- [1. Kurulumlar](#1-kurulumlar)
-   - [1.1. Python](#11-python)
-   - [1.2. Visual Studio Code](#12-visual-studio-code)
- [2. Değişkenler](#2-degiskenler)
+## İçindekiler
+
+- [1. Kurulumlar](#1-kurulumlar)
+  - [1.1. Python](#11-python)
+  - [1.2. Visual Studio Code](#12-visual-studio-code)
+- [2. Değişkenler](#2-degiskenler)
+- [3. Temel Fonksiyonlar](#3-temel-fonksiyonlar)
+- [4. Veri Tipleri](#4-veri-tipleri)
+- [5. Veri Tipleri Dönüşümü](#5-veri-tipleri-donusumu)
+- [6. Yorum Satırı](#6-yorum-satiri)
+- [7. Operatörler](#7-operatorler)
+- [8. Koşullar](#8-kosullar)
+- [9. Döngüler](#9-donguler)
+- [10. Fonksiyonlar](#10-fonksiyonlar)
+- [11. Modüller](#11-moduller)
+- [12. Hatalar](#12-hatalar)
+- [13. Nesne Yönelimli Programlama (Object Oriented Programming, OOP)](#13-nesne-yonelimli-programlama-object-oriented-programming-oop)
+- [14. Dosya İşlemleri](#14-dosya-islemleri)
+- [15. Değerlendirme](#15-degerlendirme)
 
 
 # 1. Kurulumlar
