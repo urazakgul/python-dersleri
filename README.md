@@ -2787,8 +2787,1091 @@ Fonksiyonu çalıştırdığımızda ekrana aşağıdaki gibi hatayı fırlatmı
 ValueError: Bölen sıfır olamaz!
 ```
 
-## 13. Nesne Yönelimli Programlama
+## 13. Nesne Yönelimli Programlama (Object Oriented Programming, OOP)
 
 ---
 
-***Hazırlanıyor...***
+Nesne Yönelimli Programlama (OOP), bir programlama paradigmasıdır ve yazılım geliştirmeyi daha düzenli, sürdürülebilir ve anlaşılabilir hale getirmeyi amaçlar. OOP, gerçek dünyadaki nesnelerin (objelerin) davranışlarını ve ilişkilerini modellemek için kullanılır. OOP'nin temelinde *nesne* kavramı yer alır. Bir nesne, verileri (özellikler ya da durum) ve bu veriler üzerinde çalışan işlevleri (metotlar ya da davranışlar) bir araya getiren bir varlıktır. Nesneler, programda kullanılan öğeleri temsil ederler ve gerçek dünyadaki nesnelerin özelliklerini (attributes) ve davranışlarını (behaviors) taklit ederler.
+
+Örnek olarak müşteri kavramını ele alalım. Örneğin, bir kamp işletmesi sahibiyiz ve müşterilerimizin kayıtlarını tutuyoruz. Bir müşterinin kaydını oluşturalım.
+
+```python
+musteri1_rezervasyon_baslangic = "01-06-2023"
+musteri1_rezervasyon_bitis = "31-08-2023"
+musteri1_kisi = 2
+musteri1_tercih = "Çadır Alanı"
+```
+
+Ancak bizim müşteri sayımız tek bir müşteri ile sınırlı olmayıp yüzlerce, binlerce müşteri olabilir. Hepsini bu şekilde tutamayız. Bu noktada bize yardımcı olacak olan OOP kavramına geçiş yapabiliriz.
+
+### 13.1. Sınıf (Class)
+
+Bir sınıf, nesnelerin (objects) bir planı veya bir şablonu olarak düşünülebilir. Sınıf, bir nesnenin özelliklerini ve davranışlarını tanımlayan bir yapıdır.
+
+Müşteri ile ilgili bir çatı oluşturalım. Bunu sınıf kavramı ile yapacağız.
+
+```python
+class Musteri():
+    pass
+```
+
+Yukarıdaki gibi bir sınıf; bu sınıf üzerinden de istediğimiz kadar nesne üretebileceğiz.
+
+### 13.2. Nesne (Object)
+
+Bir sınıf, nesnelerin taslağını tanımlayan bir yapıdır demiştik. Nesne ise bir sınıfın özelliklerini ve davranışlarını içerir. Nesneler gerçek dünyadaki varlıklara veya soyut kavramlara karşılık gelebilir. Örneğin, bir araba sınıfı bir otomobilin özelliklerini ve davranışlarını tanımlarken, bir nesne ise belirli bir arabanın özelliklerini ve davranışlarını temsil eder. Bir arabanın özellikleri renk, model, hız gibi veriler olabilirken, davranışları hızlanma, yavaşlama veya durma gibi işlevler olabilir.
+
+Örneğimiz ile devam ederek `Musteri` sınıfından nasıl nesne oluşturabileceğimize bakalım.
+
+```python
+musteri1 = Musteri()
+```
+
+İçi şimdilik boş ama artık bir nesne oluşturmuş olduk. Artık sınıfın içinde özellikleri ve davranışları tanımlayabiliriz.
+
+```python
+class Musteri():
+
+    rezervasyon_baslangic = "01-06-2023"
+    rezervasyon_bitis = "31-08-2023"
+    kisi = 2
+    tercih = "Çadır Alanı"
+```
+
+`Musteri` sınıfının içinde bazı özellikleri tanımlamış olduk. Bunu çalıştırıp bir nesne oluşturalım.
+
+```python
+musteri1 = Musteri()
+```
+
+Oluşturduğumuz bu müşterinin içeriğine bir bakalım.
+
+```python
+print(musteri1)
+```
+
+Yazdırma işleminden sonra aşağıdaki gibi bir çıktı alacağız.
+
+```
+<__main__.Musteri object at 0x000002214EA78F50>
+```
+
+Bu ifade, `Musteri` nesnesinin bellekteki konumunu gösterir. Bizim içerisindeki özelliklere ulaşmamız gerekiyor. Bunu aşağıdaki gibi yapacağız.
+
+```python
+print(musteri1.rezervasyon_baslangic)
+print(musteri1.rezervasyon_bitis)
+print(musteri1.kisi)
+```
+
+Alacağımız çıktı aşağıdaki gibi olacaktır.
+
+```
+01-06-2023
+31-08-2023
+2
+```
+
+Peki, özelliklerde bir değişikliğe gidebilir miyiz? Bakalım.
+
+Örneğimizdeki müşterinin iki özelliğini değiştirelim.
+
+```python
+musteri1.kisi = 4
+musteri1.tercih = "Karavan"
+```
+
+Bakalım değişiklik sağlandı mı?
+
+```python
+print(musteri1.kisi)
+print(musteri1.tercih)
+```
+
+Aşağıdaki çıktıdan görüleceği üzere değişiklikler sağlanmış.
+
+```
+4
+Karavan
+```
+
+Geldik metot tanımlama bölümüne. Yani, davranış.
+
+Müşterinin ödeme yapması bir metot olabilir. Tanımlayalım.
+
+```python
+class Musteri():
+
+    rezervasyon_baslangic = "01-06-2023"
+    rezervasyon_bitis = "31-08-2023"
+    kisi = 2
+    tercih = "Çadır Alanı"
+    cuzdan = 100000
+
+    def odemeYap():
+        cuzdan -= 40000
+```
+
+Yukarıda, `cuzdan` isminde bir özellik daha ekledik ve `odemeYap` metodu ile `cuzdan`dan ödemenin alınmasını sağlayacağız.
+
+Çalıştıralım.
+
+```python
+musteri1.odemeYap()
+print(musteri1.cuzdan)
+```
+
+Yukarıdaki kodu çalıştırdığımızda aşağıdaki hatayı alacağız.
+
+```
+TypeError: Musteri.odemeYap() takes 0 positional arguments but 1 was given
+```
+
+Bizim sınıfın içerisinde tanımladığımız metot ile `cuzdan`ı kullanıyor olabilmemiz lazım. Bunun için tanımladığımız metodun içerisine bir `self` ifadesi ekleyeceğiz. Self, bir sınıfın örneğini temsil eden ve o örneğe ait özelliklere ve davranışlara erişimi sağlayan bir referanstır.
+
+```python
+musteri1.odemeYap()
+print(musteri1.cuzdan)
+```
+
+Artık ödemenin yapılacağı metodu çalıştırmış olduk.
+
+```
+60000
+```
+
+Metodu çalıştırdığımızda cüzdanda kalan para bilgisini direkt olarak da alabiliriz.
+
+```python
+class Musteri():
+
+    rezervasyon_baslangic = "01-06-2023"
+    rezervasyon_bitis = "31-08-2023"
+    kisi = 2
+    tercih = "Çadır Alanı"
+    cuzdan = 100000
+
+    def odemeYap(self):
+        self.cuzdan -= 40000
+        print("Cüzdan:",self.cuzdan)
+```
+
+Metodun içine `print()` ekledik.
+
+```
+Cüzdan: 60000
+```
+
+Bu noktada metot ile fonksiyon arasındaki farkı da şöyle yazabiliriz: OOP'de *metot* terimi, sınıflara ait fonksiyonları ifade ederken, fonksiyonel programlamada *fonksiyon* terimi daha genel olarak kullanılır. Diğer bir ifadeyle, metotlar, bir sınıfa aittir ve o sınıfın nesneleri üzerinde çağrılırken kullanılır. Fonksiyonlar ise bir sınıfa veya nesneye bağlı olmadan çağrılabilir.
+
+### 13.3. Yapıcı (Constructor)
+
+Artık sınıfta tanımladığımız değişkenleri `init` metodunun içine taşıyacağız.
+
+```python
+class Musteri():
+
+    def __init__():
+        rezervasyon_baslangic = "01-06-2023"
+        rezervasyon_bitis = "31-08-2023"
+        kisi = 2
+        tercih = "Çadır Alanı"
+        cuzdan = 100000
+```
+
+Her bir müşteri için yukarıdaki değişkenleri tek tek mi değiştireceğiz? Hayır. Bunun için de aşağıdaki gibi bir yapı kuruyoruz.
+
+```python
+class Musteri():
+
+    def __init__(self, rezervasyon_baslangic, rezervasyon_bitis, kisi, tercih, cuzdan):
+        self.rezervasyon_baslangic = rezervasyon_baslangic
+        self.rezervasyon_bitis = rezervasyon_bitis
+        self.kisi = kisi
+        self.tercih = tercih
+        self.cuzdan = cuzdan
+```
+
+Yukarıda, `Musteri` sınıfının bir yapıcı metodu olan `__init__` bulunuyor. Bu yapıcı metot, `rezervasyon_baslangic`, `rezervasyon_bitis`, `kisi`, `tercih` ve `cuzdan` isminde beş parametre alıyor ve bu parametrelerin değerlerini sınıfın özelliklerine atıyor. Örneğin, `self.rezervasyon_baslangic = rezervasyon_baslangic` ifadesi, `Musteri` sınıfının bir örneği (instance) oluşturulduğunda, o örneğin `rezervasyon_baslangic` özelliğinin `rezervasyon_baslangic` parametresinin değerine eşitlenmesini sağlar.
+
+Cüzdanı gösterecek bir metot ile beraber nesnemizi de oluşturalım.
+
+```python
+class Musteri():
+
+    def __init__(self, rezervasyon_baslangic, rezervasyon_bitis, kisi, tercih, cuzdan):
+        self.rezervasyon_baslangic = rezervasyon_baslangic
+        self.rezervasyon_bitis = rezervasyon_bitis
+        self.kisi = kisi
+        self.tercih = tercih
+        self.cuzdan = cuzdan
+
+    def getCuzdan(self):
+        return self.cuzdan
+
+musteri1 = Musteri(rezervasyon_baslangic="01-06-2023",rezervasyon_bitis="31-08-2023",kisi=4,tercih="Karavan")
+```
+
+Buradan oluşturduğumuz nesnenin cüzdan bilgisi alalım.
+
+```python
+class Musteri():
+
+    def __init__(self, rezervasyon_baslangic, rezervasyon_bitis, kisi, tercih, cuzdan):
+        self.rezervasyon_baslangic = rezervasyon_baslangic
+        self.rezervasyon_bitis = rezervasyon_bitis
+        self.kisi = kisi
+        self.tercih = tercih
+        self.cuzdan = cuzdan
+
+    def getCuzdan(self):
+        return self.cuzdan
+
+musteri1 = Musteri(rezervasyon_baslangic="01-06-2023",rezervasyon_bitis="31-08-2023",kisi=4,tercih="Karavan",cuzdan=100000)
+print(musteri1.getCuzdan())
+```
+
+Çıktıyı `100000` olarak alacağız.
+
+Bir müşteri daha oluşturalım.
+
+```python
+musteri2 = Musteri(rezervasyon_baslangic="01-07-2023",rezervasyon_bitis="31-07-2023",kisi=2,tercih="Karavan",cuzdan=50000)
+print(musteri2.getCuzdan())
+```
+
+Çıktıyı `50000` olarak alacağız.
+
+Bir tane de tercihi verecek bir metot yazalım.
+
+```python
+class Musteri():
+
+    def __init__(self, rezervasyon_baslangic, rezervasyon_bitis, kisi, tercih, cuzdan):
+        self.rezervasyon_baslangic = rezervasyon_baslangic
+        self.rezervasyon_bitis = rezervasyon_bitis
+        self.kisi = kisi
+        self.tercih = tercih
+        self.cuzdan = cuzdan
+
+    def getCuzdan(self):
+        return self.cuzdan
+
+    def getTercih(self):
+        return self.tercih
+```
+
+Örnek olarak, ilk müşterinin tercihine bakalım.
+
+```python
+print(musteri1.getTercih())
+```
+
+Çıktıyı `Karavan` olarak alacağız.
+
+Buraya kadar öğrendiklerimizi bir hesap makinesi uygulaması ile tekrar edelim.
+
+```python
+class HesapMakinesi():
+    pass
+```
+
+Hesap makinemizin 4 tane metodu olacak: Toplama, Çıkarma, Çarpma ve Bölme.
+
+```python
+class HesapMakinesi():
+
+    def __init__(self):
+        pass
+
+    def topla(self):
+        pass
+
+    def cikar(self):
+        pass
+
+    def carp(self):
+        pass
+
+    def bol(self):
+        pass
+```
+
+`__init__` metodunu dolduralım.
+
+```python
+class HesapMakinesi():
+
+    def __init__(self, sayi1, sayi2):
+        self.s1 = sayi1
+        self.s2 = sayi2
+
+    def topla(self):
+        pass
+
+    def cikar(self):
+        pass
+
+    def carp(self):
+        pass
+
+    def bol(self):
+        pass
+```
+
+Sınıfın yapıcı metodu olan `__init__` `sayi1` ve `sayi2` parametrelerini alarak sınıfın örnek değişkenlerine (`self.s1` ve `self.s2`) atadık. Burada `s1` ve `s2` bizim özelliklerimiz olacak.
+
+O halde, daha önce yazdığımız metotlarımızı doldurabiliriz.
+
+```python
+class HesapMakinesi():
+
+    def __init__(self, sayi1, sayi2):
+        self.s1 = sayi1
+        self.s2 = sayi2
+
+    def topla(self):
+        sonuc = self.s1 + self.s2
+        return sonuc
+
+    def cikar(self):
+        sonuc = self.s1 - self.s2
+        return sonuc
+
+    def carp(self):
+        sonuc = self.s1 * self.s2
+        return sonuc
+
+    def bol(self):
+        sonuc = self.s1 / self.s2
+        return sonuc
+```
+
+Test etme aşamasına geldik.
+
+```python
+hm1 = HesapMakinesi(sayi1=100, sayi2=40)
+print(
+    """
+    Toplama Sonucu: {}
+    Çıkarma Sonucu: {}
+    Çarpma Sonucu : {}
+    Bölme Sonucu  : {}
+
+    """.format(hm1.topla(),hm1.cikar(),hm1.carp(),hm1.bol())
+)
+```
+
+Çıktı aşağıdaki gibi olacaktır.
+
+```
+Toplama Sonucu: 140
+Çıkarma Sonucu: 60
+Çarpma Sonucu : 4000
+Bölme Sonucu  : 2.5
+```
+
+Buraya kadar öğrendiklerimizi tekrar etmiş olduk.
+
+### 13.4. Kapsülleme (Encapsulation)
+
+Kapsülleme, bir sınıfın özelliklerini ve bu özelliklere erişmek için kullanılan metotları bir araya getirerek, özelliklerin korunmasını ve güvenli bir şekilde erişimi sağlar.
+
+Buraya kadar öğrendiklerimiz ile bir `BankaHesabi` sınıfı oluşturalım.
+
+```python
+class BankaHesabi():
+
+    def __init__(self, id, para):
+        self.id = id
+        self.para = para
+```
+
+Bir tane de müşteri oluşturalım.
+
+```python
+musteri = BankaHesabi(id = "123456789", para=1000000)
+print(musteri.para)
+```
+
+Bu müşterinin banka hesabındaki para bilgisine ulaşabiliyoruz. Yani, çıktıyı `1000000` olarak aldık.
+
+Peki, parayı buradan rahat bir şekilde başka bir hesaba geçirebilir miyiz? Bakalım.
+
+```python
+hirsiz = BankaHesabi(id = "987654321", para=0)
+
+hirsiz.para += musteri.para
+musteri.para = 0
+
+print(
+    """
+
+    Müşteri: {}
+    Hırsız : {}
+
+    """.format(musteri.para,hirsiz.para)
+)
+```
+
+Yukarıda ve aşağıda görüldüğü üzere müşterinin parası rahatlıkla sıfırlandı.
+
+```
+Müşteri: 0
+Hırsız : 1000000
+```
+
+Bu noktada kapsülleme kavramını devreye alabiliriz.
+
+```python
+class BankaHesabi():
+
+    def __init__(self, id, para):
+        self.id = id
+        self.__para = para
+```
+
+Yukarıda görüldüğü üzere, `para` özelliğini başına çift alt tire `__` koyarak özel (private) yaptık.
+
+Eğer aşağıdaki kodu çalıştırırsak hata alırız.
+
+```python
+print(musteri.__para)
+```
+
+```
+AttributeError: 'BankaHesabi' object has no attribute '__para'
+```
+
+Peki, biz bu para bilgisine ulaşamayacak mıyız? Tabi ki ulaşacağız. Burada `get` ve `set` metotları devreye girecek. Aslında böyle metotlar yok ancak get ve set demek bir kültür. Bu metotları kullanarak hem para bilgisini alalım hem de para bilgisini değiştirelim.
+
+```python
+print("Önceki Para: ",musteri.getPara())
+musteri.setPara(miktar=2000000)
+print("Sonraki Para: ",musteri.getPara())
+```
+
+Çıktı aşağıdaki gibi olacaktır.
+
+```python
+Önceki Para:  1000000
+Sonraki Para:  2000000
+```
+
+Özellikleri özel yapabileceğimiz gibi metotları da özel yapabiliriz. Bir tane metot oluşturalım ve bu özel olsun. Yine aynı şekilde `__` ile özel yapacağız.
+
+```python
+class BankaHesabi():
+
+    def __init__(self, id, para):
+        self.id = id
+        self.__para = para
+
+    def getPara(self):
+        return self.__para
+
+    def setPara(self, miktar):
+        self.__para = miktar
+
+    def __faiz(self):
+        self.__para = self.__para + 1000
+```
+
+Paraya faiz ekleyelim.
+
+```python
+musteri.__faiz()
+```
+
+Aşağıdaki hatayı alacağız.
+
+```
+AttributeError: 'BankaHesabi' object has no attribute '__faiz'
+```
+
+### 13.5. Miras, Kalıtım (Inheritance)
+
+Kalıtım, bir sınıfın diğer bir sınıftan onun özelliklerini ve davranışlarını devralmasını sağlar.
+
+Bir `WebSitesi` sınıfı oluşturalım. Bu sınıf email adresi ve kullanıcı ismi olmak üzere iki tane parametre alsın. Bir tane de metot yazalım ve bilgileri ekrana bassın.
+
+```python
+class WebSitesi():
+    def __init__(self, email, kullanici_ismi):
+        self.email = email
+        self.kullanici_ismi = kullanici_ismi
+
+    def loginBilgi(self):
+        return f"Email: {self.email}\nKullanıcı ismi: {self.kullanici_ismi}"
+```
+
+Ana sınıfı oluşturduk. Ancak web siteleri arasında kullanıcıdan istenilen bilgi değişebilir. O halde, bir alt sınıf oluşturalım.
+
+```python
+class WebSitesi2(WebSitesi):
+    pass
+```
+
+Yukarıda, `WebSitesi2` isminde bir sınıf tanımladık ve `WebSitesi` sınıfından türettik (inheritance). `WebSitesi2`, `WebSitesi` sınıfının tüm özelliklerini ve metodlarını miras alacak ve bu sınıfa ekstra özellikler veya metodlar ekleyebileceğiz.
+
+```python
+class WebSitesi2(WebSitesi):
+    def __init__(self, email, kullanici_ismi, guvenlik_sorusu):
+        super().__init__(email, kullanici_ismi)
+        self.guvenlik_sorusu = guvenlik_sorusu
+```
+
+Yukarıda, `WebSitesi2` sınıfının yapıcı metodu olan `__init__` tanımlandı ve bu metot, üst sınıfın yapıcı metodunu çağırmak için `super()` fonksiyonunu kullandı. `WebSitesi2` sınıfının yapıcı metodu üç parametre alıyor: `email`, `kullanici_ismi` ve `guvenlik_sorusu`. `super().__init__(email, kullanici_ismi)` ifadesi, `WebSitesi` sınıfının yapıcı metodunu çağırarak `email` ve `kullanici_ismi` parametrelerini iletiyor.
+
+Login bilgisini gösteren bir metot tanımlayalım.
+
+```python
+class WebSitesi2(WebSitesi):
+    def __init__(self, email, kullanici_ismi, guvenlik_sorusu):
+        super().__init__(email, kullanici_ismi)
+        self.guvenlik_sorusu = guvenlik_sorusu
+
+    def loginBilgi2(self):
+        return f"Email: {self.email}\Kullanıcı ismi: {self.kullanici_ismi}\nGüvenlik sorusu: {self.guvenlik_sorusu}"
+```
+
+Her iki sınıftan da nesneler üretelim ve yazdıralım.
+
+```python
+k1 = WebSitesi(email="kullanici1@gmail.com", kullanici_ismi="kullanici1")
+k2 = WebSitesi2(email="kullanici2@gmail.com", kullanici_ismi="kullanici2", guvenlik_sorusu="Kanada")
+
+print(k1.loginBilgi())
+print(k2.loginBilgi2())
+```
+
+```
+Email: kullanici1@gmail.com
+Kullanıcı ismi: kullanici1
+Email: kullanici2@gmail.com
+Kullanıcı ismi: kullanici2
+Güvenlik sorusu: Kanada
+```
+
+Bir tane de `WebSitesi3` isminde bir sınıf oluşturalım.
+
+```python
+class WebSitesi3(WebSitesi):
+    def __init__(self, email, kullanici_ismi, ulke):
+        super().__init__(email, kullanici_ismi)
+        self.ulke = ulke
+
+    def loginBilgi3(self):
+        return f"Email: {self.email}\nKullanıcı ismi: {self.kullanici_ismi}\nÜlke: {self.ulke}"
+```
+
+Bir nesne üretelim ve yazdıralım.
+
+```python
+k3 = WebSitesi3(email="kullanici3@gmail.com", kullanici_ismi="kullanici3", ulke="Türkiye")
+
+print(k3.loginBilgi3())
+```
+
+```
+Email: kullanici3@gmail.com
+Kullanıcı ismi: kullanici3
+Ülke: Türkiye
+```
+
+### 13.6. Soyut Sınıflar (Abstract Classes)
+
+Soyut sınıflar kavramını kullanarak soyutlama yapabiliriz. Bir soyut sınıf, diğer sınıfların temel alabileceği ortak özellikleri ve davranışları tanımlayan bir sınıftır. Ancak soyut sınıfın kendisi ile doğrudan bir nesne oluşturulamaz.
+
+Soyut sınıflar, genellikle alt sınıflar tarafından uygulanması gereken yöntemlerin taslağını tanımlamak için kullanılır. Alt sınıflar, soyut sınıftan kalıtım alırken soyut yöntemleri uygulamak zorundadır. Böylece, soyut sınıf, alt sınıflar arasında ortak bir davranışı zorunlu kılabilir.
+
+Bir örnek üzerinden gidelim. Diyelim ki bir oyun geliştirmek istiyoruz ve bu oyunda farklı türde karakterler bulunacak. Her karakterin bir ismi ve hareket etme yeteneği olacak ancak farklı karakter türlerinin hareket etme şekilleri farklı olacak. Bu durumu soyut sınıflar kullanarak modelleyebiliriz.
+
+```python
+class Karakter():
+    pass
+
+class Oyuncu(Karakter):
+    pass
+
+class Dusman(Karakter):
+    pass
+
+k = Karakter()
+```
+
+`Karakter` isminde bir üst sınıf ve `Oyuncu` ile `Dusman` isimlerinde alt sınıflar oluşturduk. Ardından da bir tane karakter oluşturduk. Bu problemsiz çalışacaktır.
+
+Soyut sınıflarda olması gereken buradan hiçbir şekilde nesne üretilememesidir.
+
+```python
+from abc import ABC, abstractmethod
+```
+
+abc, *Abstract Base Classes* yani *Soyut Taban Sınıfları* anlamına gelir ve Python'ın standart kütüphanesinde bulunan bir modüldür. Bu modül, soyut taban sınıfların tanımlanması için mekanizmalar sağlar. Soyut bir taban sınıf, doğrudan örneklendirilemeyen ancak bir grup ilgili sınıf için ortak bir arayüz sağlayan bir sınıftır. ABC'yi abc modülünden içe aktardığımızda, soyut taban sınıfları tanımlamak için kullanılan temel sınıfı içe aktarıyoruz. ABC'den türetilen bir sınıf, bir soyut taban sınıf haline gelir.
+
+`Karakter` sınıfını bir soyut sınıf yapalım.
+
+Buraya oyuncu ve düşman sınıflarının ortak özelliği olan `hareketEt` metodunu da yazalım.
+
+```python
+from abc import ABC, abstractmethod
+
+class Karakter():
+    def __init__(self,isim):
+        self.isim = isim
+
+    @abstractmethod
+    def hareketEt(self):
+        pass
+```
+
+Son bir adım ABC'yi kalıtım ile almak olacak.
+
+```python
+from abc import ABC, abstractmethod
+
+class Karakter(ABC):
+    def __init__(self,isim):
+        self.isim = isim
+
+    @abstractmethod
+    def hareketEt(self):
+        pass
+```
+
+Artık `Karakter` sınıfından bir nesne üretemeyeceğiz.
+
+```python
+from abc import ABC, abstractmethod
+
+class Karakter(ABC):
+    def __init__(self,isim):
+        self.isim = isim
+
+    @abstractmethod
+    def hareketEt(self):
+        pass
+
+k = Karakter(isim="karakter1")
+```
+
+```
+TypeError: Can't instantiate abstract class Karakter with abstract method hareketEt
+```
+
+Eğer üst sınıf soyut sınıf olarak tanımlandıysa alt sınıflarda üst sınıflarda tanımlanan metotları kullanmak zorundayız.
+
+```python
+from abc import ABC, abstractmethod
+
+class Karakter(ABC):
+    def __init__(self, isim):
+        self.isim = isim
+
+    @abstractmethod
+    def hareketEt(self):
+        pass
+
+class Oyuncu(Karakter):
+    def __init__(self,isim):
+        super().__init__(isim)
+        pass
+
+    def hareketEt(self):
+        print(f"{self.isim} hareket ediyor.")
+
+class Dusman(Karakter):
+    def __init__(self,isim):
+        super().__init__(isim)
+        pass
+
+    def hareketEt(self):
+        print(f"{self.isim} saldırıya geçiyor.")
+
+oyuncu = Oyuncu(isim="Oyuncu1")
+dusman = Dusman(isim="Dusman1")
+
+oyuncu.hareketEt()
+dusman.hareketEt()
+```
+
+```
+Oyuncu1 hareket ediyor.
+Dusman1 saldırıya geçiyor.
+```
+
+### 13.7. Geçersiz Kılmak (Overriding)
+
+Overriding, bir alt sınıfın üst sınıfta tanımlanan bir metodu veya özelliği değiştirmesine izin verir. Bu, alt sınıfın üst sınıftan miras aldığı öğeleri kendi ihtiyaçlarına göre uyarlamasını sağlar.
+
+Örneğin, bir `Hayvan` sınıfı düşünelim ve bu sınıfta bir `sesCikar` metodu olsun:
+
+```python
+class Hayvan():
+    def sesCikar(self):
+        print("Hayvan ses çıkarıyor.")
+```
+
+Şimdi, `Kedi` sınıfını `Hayvan` sınıfından türetelim ve `sesCikar` metodu üzerinde overriding yapalım.
+
+```python
+class Kedi(Hayvan):
+    def sesCikar(self):
+        print("Miyav!")
+```
+
+Burada `Kedi` sınıfı, `Hayvan` sınıfından türetilmiş ve `sesCikar` metodu üzerinde değişiklik yapmıştır. Artık `Kedi` sınıfının ses çıkarma davranışı *Miyav!* şeklindedir.
+
+```python
+hayvan = Hayvan()
+hayvan.sesCikar()
+print("-----")
+kedi = Kedi()
+kedi.sesCikar()
+```
+
+Çıktı aşağıdaki gibi olacaktır.
+
+```
+Hayvan ses çıkarıyor.
+-----
+Miyav!
+```
+
+Görüldüğü gibi, `hayvan` nesnesi `Hayvan` sınıfının `sesCikar` metodunu çağırırken, `kedi` nesnesi `Kedi` sınıfının `sesCikar` metodunu çağırmaktadır. Bu durum, overriding sayesinde alt sınıfın üst sınıfta tanımlanan metodu değiştirerek kendi özgün davranışını gerçekleştirmesini sağlar.
+
+### 13.8. Çok Biçimlilik (Polymorphism)
+
+Polimorfizm, farklı sınıflara ait nesnelerin aynı arabirim üzerinden farklı davranışlar sergilemesini sağlayan bir özelliktir.
+
+Polimorfizm, bir üst sınıf veya arayüzü uygulayan alt sınıfların, aynı isme sahip ancak farklı işlevlere sahip metotları çağırabilmesine olanak tanır. Bu, aynı arabirim üzerinden çoklu davranışlar sergileyebilmemizi sağlar.
+
+Örnek olarak, bir `Hayvan` sınıfı düşünelim. Bu sınıf, temel hayvan davranışlarını temsil eden bir dizi metoda sahip olabilir. Örneğin, `beslen()` ve `sesCikar()` gibi. Ardından, `Kedi` ve `Kopek` gibi alt sınıflar oluşturabiliriz. Bu alt sınıflar `Hayvan` sınıfından türetilir.
+
+```python
+class Hayvan:
+    def beslen(self):
+        pass
+
+    def sesCikar(self):
+        pass
+
+class Kedi(Hayvan):
+    def beslen(self):
+        print("Kedi: Mama ile beslendi.")
+
+    def sesCikar(self):
+        print("Kedi: Miyav!")
+
+class Kopek(Hayvan):
+    def beslen(self):
+        print("Köpek: Mama ile beslendi.")
+
+    def sesCikar(self):
+        print("Köpek: Hav hav!")
+```
+
+Metotları çalıştıralım.
+
+```python
+hayvanlar = [Kedi(), Kopek()]
+
+for hayvan in hayvanlar:
+    hayvan.beslen()
+    hayvan.sesCikar()
+    print()
+```
+
+```
+Kedi: Mama ile beslendi.
+Kedi: Miyav!
+
+Köpek: Mama ile beslendi.
+Köpek: Hav hav!
+```
+
+Yukarıdaki örnekte, `Hayvan` sınıfının `beslen()` ve `sesCikar()` adında iki metodu bulunuyor. Bu sınıf, temel davranışı tanımlar ancak gerçek davranışlar alt sınıflarda uygulanır. `Kedi` ve `Kopek` sınıfları, `Hayvan` sınıfından türetilmiştir ve aynı isimlere sahip metotları uygularlar. Ancak her bir sınıf kendi özgün davranışlarını sergiler. Örneğin, `Kedi` sınıfı `beslen()` metodu çağrıldığında `Kedi: Mama ile beslendi.` mesajını verirken, `Kopek` sınıfı aynı metodu çağrıldığında `Köpek: Mama ile beslendi.` mesajını verir.
+
+## 14. Dosya İşlemleri
+
+---
+
+### 14.1. Dosya Açma
+
+`ornek.txt` isimli dosyayı açalım.
+
+```python
+dosya = open("./files/ornek.txt")
+icerik = dosya.read()
+print(icerik)
+```
+
+```
+Hic ita incipit historia mea.
+In patria mea, inestabilis condicio politica et parvae condiciones economicae obstacula factae sunt,
+quae meum futurum modum determinaverunt.
+Diu restiti, spem retinere conatus sum, sed demum migrationem decidi.
+Hoc faciens, sciebam me vincula mea cum familia et caris amicis rescindendum esse.
+Iam ipse cogitatio cor meum dirumpit.
+```
+
+Dosyaları açtıktan sonra kapatmalıyız.
+
+```python
+dosya.close()
+```
+
+Dosya açma işlemlerinde daha pratik olan aşağıdaki yapıyı kullanabiliriz.
+
+```python
+with open("./files/ornek.txt") as dosya:
+    icerik = dosya.read()
+    print(icerik)
+```
+
+```
+Hic ita incipit historia mea.
+In patria mea, inestabilis condicio politica et parvae condiciones economicae obstacula factae sunt,
+quae meum futurum modum determinaverunt.
+Diu restiti, spem retinere conatus sum, sed demum migrationem decidi.
+Hoc faciens, sciebam me vincula mea cum familia et caris amicis rescindendum esse.
+Iam ipse cogitatio cor meum dirumpit.
+```
+
+### 14.2. Dosya Okuma
+
+Bir önceki kodu `r` moduna çevireceğiz.
+
+```python
+with open("./files/ornek.txt", "r") as dosya:
+    icerik = dosya.read()
+    print(icerik)
+```
+
+Pratikte, bu iki örnek aynı sonucu verir. Dosya açma modunu belirtmemek durumunda, "r" modu varsayılan olarak kullanılır.
+
+Bu defa `readline()` kullanalım.
+
+```python
+with open("./files/ornek.txt", "r") as dosya:
+    icerik = dosya.readline()
+    print(icerik)
+```
+
+Alacağımız çıktı aşağıdaki gibi olacaktır.
+
+```
+Hic ita incipit historia mea.
+```
+
+`readline()` fonksiyonu, dosyanın sadece bir satırını okur. Her çağrıldığında bir sonraki satırı okur. Bu nedenle, eğer `readline()` fonksiyonunu döngü içinde kullanırsak, dosyanın tüm satırlarını tek tek okuyabiliriz.
+
+Gelelim `tell()` ve `seek()` kullanımına.
+
+`tell()`, dosya işaretçisinin mevcut konumunu (byte olarak) döndürür. Yani, dosyanın hangi konumda olduğunu gösteren bir sayısal değer döner. Bu değer, dosyanın başlangıcından itibaren kaç byte ilerlendiğini temsil eder.
+
+```python
+with open("./files/ornek.txt", "r") as dosya:
+    konum = dosya.tell()
+    print("Dosyanın mevcut konumu: ",konum)
+```
+
+Çıktıyı `0` olarak alacağız.
+
+`seek()`, dosya işaretçisini belirli bir konuma taşır. Bu konum, dosyanın belirli bir byte'ına karşılık gelir. İki parametre alır: `seek(hedef_konum, referans_noktası)`. hedef_konum, dosyanın taşınmak istenen konumunu temsil eden bir sayısal değerdir. referans_noktası, hangi referans noktasına göre taşınacağını belirtir ve opsiyoneldir. Varsayılan olarak 0 kullanılır ve dosyanın başlangıcı olarak kabul edilir. Diğer referans noktaları 1 (mevcut konum) ve 2 (dosyanın sonu) şeklindedir.
+
+```python
+with open("./files/ornek.txt", "r") as dosya:
+    dosya.seek(10)
+    satir = dosya.readline()
+    print(satir)
+```
+
+Çıktı `cipit historia mea.` şeklinde dönecektir. Yani, `seek(10)` ile dosya işaretçisi 10. byte'a taşınır ve `readline()` metoduyla bu konumdan itibaren bir satır okunur ve ekrana yazdırılır.
+
+Tüm satırları listeye çeviren `readlines()` fonksiyonuna bakalım.
+
+```python
+with open("./files/ornek.txt", "r") as dosya:
+    icerik = dosya.readlines()
+    print(icerik)
+```
+
+Çıktı aşağıdaki gibi bir liste olacaktır.
+
+```
+['Hic ita incipit historia mea.\n', 'In patria mea, inestabilis condicio politica et parvae condiciones economicae obstacula factae sunt,\n', 'quae meum futurum modum determinaverunt.\n', 'Diu restiti, spem retinere conatus sum, sed demum migrationem decidi.\n', 'Hoc faciens, sciebam me vincula mea cum familia et caris amicis rescindendum esse.\n', 'Iam ipse cogitatio cor meum dirumpit.']
+```
+
+Bunları satır satır nasıl okuyabiliriz? Bir for döngüsü çalıştırabiliriz.
+
+```python
+with open("./files/ornek.txt", "r") as dosya:
+    icerik = dosya.readlines()
+
+    for i in icerik:
+        print(i)
+```
+
+Çıktıda her satırda bir boşluk göreceğiz.
+
+```
+Hic ita incipit historia mea.
+
+In patria mea, inestabilis condicio politica et parvae condiciones economicae obstacula factae sunt,
+
+quae meum futurum modum determinaverunt.
+
+Diu restiti, spem retinere conatus sum, sed demum migrationem decidi.
+
+Hoc faciens, sciebam me vincula mea cum familia et caris amicis rescindendum esse.
+
+Iam ipse cogitatio cor meum dirumpit.
+```
+
+Bunun sebebi, aslında `print()` fonksiyonunun `end` isimli bir parametre almasıdır. Bu parametrenin varsayılan değeri ise `\n`'dir. Bunun yerine `""` yaparsak boş satırlar kalkacaktır.
+
+```python
+with open("./files/ornek.txt", "r") as dosya:
+    icerik = dosya.readlines()
+
+    for i in icerik:
+        print(i,end="")
+```
+
+```
+Hic ita incipit historia mea.
+In patria mea, inestabilis condicio politica et parvae condiciones economicae obstacula factae sunt,
+quae meum futurum modum determinaverunt.
+Diu restiti, spem retinere conatus sum, sed demum migrationem decidi.
+Hoc faciens, sciebam me vincula mea cum familia et caris amicis rescindendum esse.
+Iam ipse cogitatio cor meum dirumpit.
+```
+
+`r` modu dosyanın içeriğinin metin olarak okunmasını sağlar. Bir de `rb` modu vardır. Bu mod, dosyanın içeriğini byte olarak okumamızı sağlar. Örneğin, bir resim okuyalım.
+
+```python
+with open("./files/ai.jpg", "rb") as resim:
+    icerik = resim.read()
+    print(icerik)
+```
+
+Çıktı aşağıdaki gibi olacaktır.
+
+```
+b'\xff\xd8\xff\xe0\x00\x10JFIF\x00\x01\x01\x01\x01,\x01,...
+```
+
+Son olarak, `r+` modu dosyanın okuma ve yazma modunda açılmasını sağlar. Bu modda, dosya hem okunabilir hem de değiştirilebilir.
+
+```python
+with open("./files/ornek.txt", "r+") as dosya:
+    icerik = dosya.read()
+    print(icerik)
+    dosya.write("TEST")
+    print("---")
+    dosya.seek(0)
+    icerik = dosya.read()
+    print(icerik)
+```
+
+```Hic ita incipit historia mea.
+In patria mea, inestabilis condicio politica et parvae condiciones economicae obstacula factae sunt,
+quae meum futurum modum determinaverunt.
+Diu restiti, spem retinere conatus sum, sed demum migrationem decidi.
+Hoc faciens, sciebam me vincula mea cum familia et caris amicis rescindendum esse.
+Iam ipse cogitatio cor meum dirumpit.
+---
+Hic ita incipit historia mea.
+In patria mea, inestabilis condicio politica et parvae condiciones economicae obstacula factae sunt,
+quae meum futurum modum determinaverunt.
+Diu restiti, spem retinere conatus sum, sed demum migrationem decidi.
+Hoc faciens, sciebam me vincula mea cum familia et caris amicis rescindendum esse.
+Iam ipse cogitatio cor meum dirumpit.TEST
+```
+
+Eğer `seek()` kullanılmasaydı ne olurdu?
+
+`dosya.write("TEST")` satırından sonra dosya dosyasının imleci dosyanın sonuna gittiği için `icerik = dosya.read()` komutu, dosyanın sonunda olduğundan okuma yapmaz. Dosya imleci en son yazılan yere gelmiştir ve `dosya.read()` komutu, imlecin orada olduğu yerden itibaren okumayı başlatır. Ancak dosyanın sonunda imleç olduğu için okunacak başka bir şey kalmamıştır. `dosya.seek(0)` komutu, dosya imlecinin başa alınmasını sağlar. Böylece `dosya.read()` komutu dosyanın başından itibaren okuma yapar ve "TEST" yazısını da içerecek şekilde tamamını okur.
+
+### 14.3. Dosya Yazma
+
+`w` modu ile başlayalım.
+
+```python
+with open("./files/yeni_ornek.txt", "w") as dosya:
+    dosya.write("Selam!")
+```
+
+Yeni bir dosya yarattık ve içerisine "Selam!" yazdık. Dosya belirttiğimiz dosya yolunda oluşacaktır. Bu mod direkt olarak dosyanın üzerine yazar. "Merhaba!" yazarsak önceki dosyanın üzerine yazacaktır.
+
+```python
+with open("./files/yeni_ornek.txt", "w") as dosya:
+    dosya.write("Merhaba!")
+```
+
+`a` modu ise yazıyı ekler.
+
+```python
+with open("./files/yeni_ornek.txt", "a") as dosya:
+    dosya.write(" Nasılsın?")
+```
+
+Bu şekilde yazarsak Türkçe karakterden dolayı aşağıdaki hatatı alacağız.
+
+```
+UnicodeEncodeError: 'charmap' codec can't encode character '\u0131' in position 4: character maps to
+```
+
+Bunun için `encoding` parametresini eklememiz gerekiyor.
+
+```python
+with open("./files/yeni_ornek.txt", "a", encoding="utf-8") as dosya:
+    dosya.write(" Nasılsın?")
+```
+
+Dosyada `Merhaba! Nasılsın?` olarak göreceğiz.
+
+`write()` fonksiyonunu kullandık. Bir de `writelines()` fonksiyonunu kullanalım.
+
+```python
+with open("./files/yeni_ornek2.txt", "a", encoding="utf-8") as dosya:
+    dosya.writelines(["Merhaba!\n","Nasılsın?"])
+```
+
+Dosyaya aşağıdaki gibi gidecektir.
+
+```
+Merhaba!
+Nasılsın?
+```
+
+Son olarak, `wb` modunu görelim.
+
+Daha önce resmimizi okumuştuk. Şimdi okuduğumuz bu resmi yazalım.
+
+```python
+with open("./files/ai.jpg", "rb") as resimOku:
+    with open("./files/yeni_ai.jpg", "wb") as resimYaz:
+        oku = resimOku.read()
+        resimYaz.write(oku)
+```
+
+Belirttiğimiz dosya yolunda ilgili resmi göreceğiz. Burada önce resmi okuduk. Ardından da okuduğumuz resmi yazdık.
+
+### 14.4. Dosya Silme
+
+Dosya silme işlemini `os` modülü ile yapacağız.
+
+```python
+import os
+
+os.remove("./files/yeni_ornek.txt")
+os.remove("./files/yeni_ornek2.txt")
+os.remove("./files/yeni_ai.jpg")
+```
+
+## 15. Değerlendirme
+
+*14 derslik Python serisini bitirdik. Zamanla gelişen ihtiyaçlar doğrultusunda bu seri güncellenebilir.*
