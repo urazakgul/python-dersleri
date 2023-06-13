@@ -4,8 +4,6 @@
 ## İçindekiler
 
 - [1. Kurulumlar](#1-kurulumlar)
-  - [1.1. Python](#11-python)
-  - [1.2. Visual Studio Code](#12-visual-studio-code)
 - [2. Değişkenler](#2-değişkenler)
 - [3. Temel Fonksiyonlar](#3-temel-fonksiyonlar)
 - [4. Veri Tipleri](#4-veri-tipleri)
